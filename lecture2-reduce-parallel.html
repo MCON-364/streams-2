@@ -659,59 +659,5 @@ students.<span class="mt">parallelStream</span>().<span class="mt">map</span>(<s
    └─ Yes → go parallel, then <span class="mt">benchmark to confirm</span>
 </pre>
 
-
-<!-- ===== EXERCISES ===== -->
-<h2><span class="num">4.</span> Exercises</h2>
-
-<div class="exercise">
-  <p><strong>Exercise 1 — reduce basics</strong></p>
-  <ol>
-    <li>Use <code>reduce</code> (not <code>max</code>) to find the student with the highest GPA.</li>
-    <li>Use <code>reduce</code> to produce a single string of all student names separated by <code>" | "</code>.</li>
-    <li>Use the three-argument <code>reduce</code> to compute the total number of unique courses across all students. <em>Hint: accumulate into a <code>Set&lt;String&gt;</code>.</em></li>
-  </ol>
-</div>
-
-<div class="exercise">
-  <p><strong>Exercise 2 — reduce to a different type</strong></p>
-  <ol>
-    <li>Define a record <code>DepartmentReport(Map&lt;String, Integer&gt; majorCounts, double avgGpa)</code>. Use a three-argument <code>reduce</code> to build this from the student list in a single pass.</li>
-    <li>Verify your combiner works correctly by running the same pipeline with <code>.parallelStream()</code> and comparing results.</li>
-  </ol>
-</div>
-
-<div class="exercise">
-  <p><strong>Exercise 3 — parallel correctness</strong></p>
-  <ol>
-    <li>Write a deliberately <em>broken</em> parallel stream pipeline that uses shared mutable state (e.g., incrementing an <code>AtomicInteger</code> inside <code>map</code>). Run it 100 times and show that results vary.</li>
-    <li>Fix it using a proper <code>collect</code> or <code>reduce</code> approach. Verify the result is always the same.</li>
-  </ol>
-</div>
-
-<div class="exercise">
-  <p><strong>Exercise 4 — Capstone (uses Lecture 1 + 2)</strong></p>
-  <ol>
-    <li>
-      Starting from the student list, produce a <code>Map&lt;String, MajorStats&gt;</code> where each key is a major and the value is a <code>MajorStats</code> summary. Use <code>groupingBy</code> with a custom <code>Collector</code> built from <code>Collector.of()</code> that uses the <code>MajorStats</code> record.
-    </li>
-    <li>
-      Run the same pipeline with <code>.parallelStream()</code> and confirm identical output. Think about: does your <code>Collector.of</code>'s combiner satisfy the consistency rule?
-    </li>
-  </ol>
-</div>
-
-<div class="concept-box">
-  <strong>Putting it all together</strong>
-  Between Lectures 1 and 2, you now have the vocabulary for nearly any data transformation in Java:
-  <code>flatMap</code> to reshape, <code>Collectors</code> to aggregate, <code>reduce</code> to fold, and parallel to scale.
-  The art is knowing <em>which tool fits the problem</em> — and when to keep things simple.
-</div>
-
-
-<div class="nav-footer">
-  <div>← Previous: <span>Collectors &amp; flatMap</span></div>
-  <div>Lecture <span>2</span> of 2</div>
-</div>
-
 </body>
 </html>
